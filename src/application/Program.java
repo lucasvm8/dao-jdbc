@@ -1,6 +1,8 @@
 package application;
 
 import db.DB;
+import model.DAO.DaoFactory;
+import model.DAO.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -21,6 +23,8 @@ public class Program {
          Connection con = null;
          Statement st = null;
          ResultSet rs = null;
+
+        SellerDAO sellerDao = DaoFactory.createSellerDAO();
 
          try{
              con = DB.getConnection();
