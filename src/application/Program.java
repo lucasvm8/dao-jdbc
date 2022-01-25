@@ -16,34 +16,9 @@ public class Program {
 
     public static void main(String[] args) {
 
-         Department obj = new Department(1,"books");
+       SellerDAO sellerDAO = DaoFactory.createSellerDAO();
 
-         Seller seller = new Seller(21, "bob", "bob@gmail.com", new Date(), 3000.00, obj);
-
-         Connection con = null;
-         Statement st = null;
-         ResultSet rs = null;
-
-        SellerDAO sellerDao = DaoFactory.createSellerDAO();
-
-         try{
-             con = DB.getConnection();
-             st = con.createStatement();
-
-             rs = st.executeQuery("SELECT * FROM seller");
-
-             while(rs.next()){
-                 System.out.println(rs.getInt("id"));
-             }
-
-         }
-         catch(SQLException e){
-            e.printStackTrace();
-        }
-         finally {
-             DB.closeConnection();
-             DB.closeStatement(st);
-         }
+       Seller seller = sellerDAO.findById(3);
 
         System.out.println(seller);
 
