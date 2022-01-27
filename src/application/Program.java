@@ -1,16 +1,12 @@
 package application;
 
-import db.DB;
 import model.DAO.DaoFactory;
 import model.DAO.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
+import java.util.List;
+
 
 public class Program {
 
@@ -19,9 +15,15 @@ public class Program {
        SellerDAO sellerDAO = DaoFactory.createSellerDAO();
 
        Seller seller = sellerDAO.findById(3);
+       System.out.println(seller);
 
-        System.out.println(seller);
+        System.out.println();
 
+        Department dp = new Department(2, null);
+        List<Seller> list = sellerDAO.findByDepartment(dp);
+        for (Seller obj : list) {
+            System.out.println(obj);
+        }
     }
 
 }
